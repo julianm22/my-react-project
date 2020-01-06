@@ -9,7 +9,7 @@ const StyledButton = styled.button`
   color: white;
   font: inherit;
   border: ${props => props.alt ? '1px solid #9c0702' : '1px solid #0c9100'};
-  border-radius: 20;
+  border-radius: 20px;
   padding: 7px;
   cursor: pointer;
 
