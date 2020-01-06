@@ -1,23 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
-// import Radium, { StyleRoot } from 'radium';
-import styled from 'styled-components';
+import classes from './App.css';
 import Person from './Person/Person';
-
-const StyledButton = styled.button`
-  background-color: ${props => props.alt ? 'red' : 'green'};
-  color: white;
-  font: inherit;
-  border: ${props => props.alt ? '1px solid #9c0702' : '1px solid #0c9100'};
-  border-radius: 20px;
-  padding: 7px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
-    color: black;
-  }
-`;
 
 class App extends Component {
   state = {
@@ -60,21 +43,9 @@ class App extends Component {
   }
 
   render() {
-    // const style = {
-    //   backgroundColor: 'green',
-    //   color: 'white',
-    //   font: 'inherit',
-    //   border: '1px solid #0c9100',
-    //   borderRadius: 20,
-    //   padding: '7px',
-    //   cursor: 'pointer',
-    //   ':hover': {
-    //     backgroundColor: 'lightgreen',
-    //     color: 'black'
-    //   }
-    // };
-
     let persons = null;
+
+    let btnClass = '';
 
     if (this.state.showPersons) {
       persons = (
@@ -89,29 +60,27 @@ class App extends Component {
           })}
         </div>
       );
-      // style.backgroundColor = 'red';
-      // style.border = '1px solid #9c0702';
-      // style[':hover'] = {
-      //   backgroundColor: 'salmon',
-      //   color: 'black'
-      // }
+      
+      btnClass = classes.Red;
     }
 
-    const classes = [];
+    const assignedClasses = [];
     if(this.state.persons.length <= 2) {
-      classes.push('red');  // classes = ['red']
+      assignedClasses.push(classes.red);  // classes = ['red']
     }
     if(this.state.persons.length <= 1) {
-      classes.push('bold'); // classes = ['red', 'bold']
+      assignedClasses.push(classes.bold); // classes = ['red', 'bold']
     }
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hi, I'm a React app</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
-        <StyledButton alt={this.state.showPersons} onClick={this.togglePersonsHandler}>
-          Toggle Persons
-        </StyledButton>
+        <p className={assignedClasses.join(' ')}>This is really working!</p>
+        <button 
+          className={btnClass} 
+          onClick={this.togglePersonsHandler}>
+            Toggle Persons
+        </button>
         {persons}
       </div>
     );
